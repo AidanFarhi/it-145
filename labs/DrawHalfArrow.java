@@ -56,7 +56,7 @@ public class DrawHalfArrow {
     public static void main(String[] args) {
         // Initialize a Scanner to obtain dimensions from input.
         Scanner scnr = new Scanner(System.in);
-        // Call a method to get dimetions from input.
+        // Call a method to get dimensions from input.
         int[] dimensions = getArrowDimensions(scnr);
         // Store the dimensions from the array into individual variables.
         int arrowBaseHeight = dimensions[0];
