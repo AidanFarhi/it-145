@@ -30,7 +30,7 @@ public class DrawHalfArrow {
      * @param baseHeight the height of the half arrow base
      * @param baseWidth  the width of the half arrow base
      */
-    public static void drawArrowBase(int baseHeight, int baseWidth) {
+    public static void printArrowBase(int baseHeight, int baseWidth) {
         for (int i = 0; i < baseHeight; i++) {
             for (int j = 0; j < baseWidth; j++) {
                 System.out.print("*");
@@ -44,7 +44,7 @@ public class DrawHalfArrow {
      * 
      * @param arrowHeadWidth the width of the half arrow head
      */
-    public static void drawArrowHead(int arrowHeadWidth) {
+    public static void printArrowHead(int arrowHeadWidth) {
         for (int i = 0; i < arrowHeadWidth; i++) {
             for (int j = 0; j < arrowHeadWidth - i; j++) {
                 System.out.print("*");
@@ -54,16 +54,16 @@ public class DrawHalfArrow {
     }
 
     public static void main(String[] args) {
-        // Initialize a Scanner to obtain dimensions from input.
-        Scanner scnr = new Scanner(System.in);
-        // Call a method to get dimensions from input.
-        int[] dimensions = getArrowDimensions(scnr);
-        // Store the dimensions from the array into individual variables.
-        int arrowBaseHeight = dimensions[0];
-        int arrowBaseWidth = dimensions[1];
-        int arrowHeadWidth = dimensions[2];
-        // Call methods to draw the base and head of the half arrow.
-        drawArrowBase(arrowBaseHeight, arrowBaseWidth);
-        drawArrowHead(arrowHeadWidth);
+        try (Scanner scnr = new Scanner(System.in)) {
+            // Get dimensions from input.
+            int[] dimensions = getArrowDimensions(scnr);
+            // Store the dimensions from the array into individual variables.
+            int arrowBaseHeight = dimensions[0];
+            int arrowBaseWidth = dimensions[1];
+            int arrowHeadWidth = dimensions[2];
+            // Print the base and head of the half arrow.
+            printArrowBase(arrowBaseHeight, arrowBaseWidth);
+            printArrowHead(arrowHeadWidth);
+        }
     }
 }
