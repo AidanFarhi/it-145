@@ -1,0 +1,51 @@
+
+method checkInPet() {
+    CALL getCheckInInfoFromClient()
+    CALL checkBoardingSpace(pet)
+    IF there is no boarding space
+        PRINT 'Sorry, there is not enough room for your pet'
+        RETURN false
+    END IF
+    CALL assignPetSpace(pet)
+    RETURN true
+}
+
+method getCheckInInfoFromClient() {
+    GET pet, length of stay, and grooming preference info from the client
+    IF the owner wants the pet to be groomed
+        IF the pet is a cat
+            PRINT 'Sorry, only dogs can be groomed'
+        ELSE IF the pet is a dog and the length of stay is less than two days
+            PRINT 'Sorry, the length of stay must be at least two days for grooming'
+            CALL pet.setGrooming(false)
+        ELSE
+            CALL pet.setGrooming(true)
+        END IF
+    END IF
+    RETURN a new Pet object with all of the collected info
+}
+
+method checkBoardingSpace(Pet pet) {
+    IF the type of pet is a dog
+        IF there are not enough spaces for dogs
+            RETURN false
+        END IF
+    ELSE 
+        IF there are not enough spaces for cats
+            RETURN false
+        END IF
+    END IF
+    RETURN true
+}
+
+method assignPetSpace(Pet pet) {
+    IF the type of pet is a dog
+        GET an available dog space
+        CALL pet.setDogSpaceNumber(available space)
+        SET dog space as occupied
+    ELSE
+        GET an available cat space
+        CALL pet.setCatSpaceNumber(available space)
+        SET cat space as occupied
+    END IF
+}
