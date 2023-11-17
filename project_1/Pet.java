@@ -11,11 +11,11 @@ public class Pet {
     public Pet() {
         this.petType = "";
         this.petName = "";
-        this.petAge = -1;
-        this.dogSpaces = -1;
-        this.catSpaces = -1;
-        this.daysStay = -1;
-        this.amountDue = -1.0;
+        this.petAge = 0;
+        this.dogSpaces = 0;
+        this.catSpaces = 0;
+        this.daysStay = 0;
+        this.amountDue = 0.0;
     }
 
     public Pet(String petType, String petName, int petAge, int dogSpaces, int catSpaces, int daysStay, double amountDue) {

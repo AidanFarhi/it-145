@@ -1,0 +1,10 @@
+Pet Check In
+The method for the pet check in process should meet the following criteria:
+• Determine if the pet is a dog or a cat and check for boarding space.
+• There are 30 spaces for dogs and 12 for cats. Pet BAG will need to be able to adjust these counts as the shop grows.
+• If there is space for a new pet, collect the appropriate information. For returning pets, update
+the information as needed.
+• Gather information on the length of the stay.
+• Determine if the pet owner would like the pet to be groomed. Only dogs can be groomed and
+only if they stay two or more days.
+• Assign the pet to a space. 
