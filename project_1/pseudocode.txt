@@ -1,7 +1,3 @@
-Good job on your pseudocode. Overall, the pseudocode is very clear and concise. 
-The pseudocode also addressed most of the specifications of the check in method. 
-However, it doesn't account for the differences between collecting the appropriate 
-information for a new pet and updating information for returning pets. Good job on this overall though.
 
 method checkInPet() {
     CALL getCheckInInfoFromClient()
@@ -15,7 +11,12 @@ method checkInPet() {
 }
 
 method getCheckInInfoFromClient() {
-    GET pet, length of stay, and grooming preference info from the client
+    IF pet is a returning pet
+        CALL handleReturningPet(pet)
+    ELSE
+        CALL handleNewPet(pet)
+    END IF
+    GET length of stay, and grooming preference info from the client
     IF the owner wants the pet to be groomed
         IF the pet is a cat
             PRINT 'Sorry, only dogs can be groomed'
@@ -26,7 +27,18 @@ method getCheckInInfoFromClient() {
             CALL pet.setGrooming(true)
         END IF
     END IF
-    RETURN a new Pet object with all of the collected info
+}
+
+method handleNewPet(Pet pet) {
+    GET pet information from client
+    SET pet information
+}
+
+method handleReturningPet(Pet pet) {
+    IF pet info needs to be updated
+        GET updated information from client
+        SET pet information
+    END IF
 }
 
 method checkBoardingSpace(Pet pet) {
