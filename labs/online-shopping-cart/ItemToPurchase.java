@@ -76,8 +76,7 @@ public class ItemToPurchase {
      * and total cost.
      */
     public void printItemPurchase() {
-        String output = itemName + " " + itemQuantity + " @ $" + 
-            itemPrice + " = $" + (itemPrice * itemQuantity);
+        String output = itemName + " " + itemQuantity + " @ $" + itemPrice + " = $" + getCost();
         System.out.println(output);
     }
 
