@@ -13,14 +13,15 @@ Private fields
 String itemName - Initialized in default constructor to "none"
 int itemPrice - Initialized in default constructor to 0
 int itemQuantity - Initialized in default constructor to 0
+
 Default constructor
 Public member methods (mutators & accessors)
 setName() & getName() (2 pts)
 setPrice() & getPrice() (2 pts)
 setQuantity() & getQuantity() (2 pts)
-(2) In main(), prompt the user for two items and create two objects of the ItemToPurchase class. 
+
+In main(), prompt the user for two items and create two objects of the ItemToPurchase class. 
 Before prompting for the second item, call scnr.nextLine(); to allow the user to input a new string.
-(2 pts)
 
 Ex:
 

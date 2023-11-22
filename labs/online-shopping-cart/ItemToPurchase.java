@@ -4,9 +4,8 @@
  */
 public class ItemToPurchase {
 
-    // Private members
     private String itemName;
-    private Double itemPrice;
+    private Integer itemPrice;
     private Integer itemQuantity;
 
     /**
@@ -14,7 +13,7 @@ public class ItemToPurchase {
      */
     public ItemToPurchase() {
         this.itemName = "none";
-        this.itemPrice = 0.0;
+        this.itemPrice = 0;
         this.itemQuantity = 0;
     }
 
@@ -41,7 +40,7 @@ public class ItemToPurchase {
      *
      * @return The price of the item.
      */
-    public Double getPrice() {
+    public Integer getPrice() {
         return itemPrice;
     }
 
@@ -50,7 +49,7 @@ public class ItemToPurchase {
      *
      * @param itemPrice The new price of the item.
      */
-    public void setPrice(Double itemPrice) {
+    public void setPrice(Integer itemPrice) {
         this.itemPrice = itemPrice;
     }
 
@@ -77,7 +76,17 @@ public class ItemToPurchase {
      * and total cost.
      */
     public void printItemPurchase() {
-        System.out.println(itemQuantity + " " + itemName + " $" + itemPrice +
-                " = $" + (itemPrice * itemQuantity));
+        String output = itemName + " " + itemQuantity + " @ $" + 
+            itemPrice + " = $" + (itemPrice * itemQuantity);
+        System.out.println(output);
+    }
+
+    /**
+     * Returns the total cost by multiplying the itemPrice and the itemQuantity.
+     * 
+     * @return the total cost
+     */
+    public Integer getCost() {
+        return itemPrice * itemQuantity;
     }
 }
