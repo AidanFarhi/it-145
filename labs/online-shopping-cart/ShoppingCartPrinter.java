@@ -12,7 +12,7 @@ public class ShoppingCartPrinter {
         ItemToPurchase item1 = new ItemToPurchase();
         ItemToPurchase item2 = new ItemToPurchase();
 
-        // Get item 1 details from input and set values for item1.
+        // Get item 1 details from input and set values for item 1.
         System.out.println("Item 1");
         System.out.println("Enter the item name: ");
         item1.setName(scnr.nextLine());
@@ -25,7 +25,7 @@ public class ShoppingCartPrinter {
         scnr.nextLine();
         System.out.println();
 
-        // Get item 2 details from input and set values for item2.
+        // Get item 2 details from input and set values for item 2.
         System.out.println("Item 2");
         System.out.println("Enter the item name: ");
         item2.setName(scnr.nextLine());
