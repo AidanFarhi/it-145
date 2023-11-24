@@ -3,22 +3,30 @@ import java.util.Scanner;
 
 public class Driver {
 
-    private static ArrayList<Dog> dogList = new ArrayList<Dog>();
-    
+    private static ArrayList<Dog> dogList = new ArrayList<>();
+    private static ArrayList<Monkey> monkeyList = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+    private static char menuChoice = ' ';
 
     public static void main(String[] args) {
 
         initializeDogList();
         initializeMonkeyList();
-        displayMenu();
+        
+        while (menuChoice != 'q') {
+            displayMenu();
+            menuChoice = scanner.next().charAt(0);
+            if(!isValidMenuChoice(menuChoice)) continue;
+        }
+
         // Add a loop that displays the menu, accepts the users input
         // and takes the appropriate action.
 	    // For the project submission you must also include input validation
         // and appropriate feedback to the user.
-        // Hint: create a Scanner and pass it to the necessary
-        // methods 
+        // Hint: create a Scanner and pass it to the necessary methods 
 	    // Hint: Menu options 4, 5, and 6 should all connect to the printAnimals() method.
 
+        System.out.println("Goodbye!");
     }
 
     // This method prints the menu options
@@ -59,7 +67,7 @@ public class Driver {
     // Adds monkeys to a list for testing
     // Optional for testing
     public static void initializeMonkeyList() {
-        
+        System.out.println("initializing MonkeyList");
     }
 
     // Complete the intakeNewDog method
@@ -105,5 +113,25 @@ public class Driver {
     // To score "exemplary" you must correctly implement the "available" list.
     public static void printAnimals() {
         System.out.println("The method printAnimals needs to be implemented");
+    }
+
+    /**
+     * Determines whether a given menu choice is valid.
+     * 
+     * @param menuChoice the menu choice.
+     * @return whether or not the menu choice was valid.
+     */
+    public static boolean isValidMenuChoice(char menuChoice) {
+        // Check if menuChoice is a digit.
+        if (Character.isDigit(menuChoice)) {
+            int menuChoiceInt = Integer.parseInt(Character.toString(menuChoice));
+            // menuChoice needs to be within the following interval: [1, 6].
+            if (!(1 <= menuChoiceInt && menuChoiceInt <= 6)) {
+                return false;
+            }
+        } else if (menuChoice != 'q') { // Check if 'q' was entered
+            return false;
+        }
+        return true;
     }
 }
