@@ -12,7 +12,7 @@ public class Driver {
 
         initializeDogList();
         initializeMonkeyList();
-        
+
         while (menuChoice != 'q') {
             displayMenu();
             menuChoice = scanner.next().charAt(0);
@@ -133,5 +133,26 @@ public class Driver {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Determines which method to call based on the given menu choice and calls the method.
+     * 
+     * @param menuChoice the menu choice.
+     */
+    public void handleMenuChoice(char menuChoice) {
+        switch (menuChoice) {
+            case '1':
+                intakeNewDog(scanner);
+                break;
+            case '2':
+                intakeNewMonkey(scanner);
+                break;
+            case '3':
+                reserveAnimal(scanner);
+                break;
+            default:
+                break;
+        }
     }
 }
