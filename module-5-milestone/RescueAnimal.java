@@ -2,7 +2,6 @@ import java.lang.String;
 
 public class RescueAnimal {
 
-	// Instance variables
 	private String name;
 	private String animalType;
 	private String gender;
@@ -14,9 +13,30 @@ public class RescueAnimal {
 	private boolean reserved;
 	private String inServiceCountry;
 
-    // Constructor
-    public RescueAnimal() {
-    }
+    public RescueAnimal() {}
+
+	public RescueAnimal(
+			String name, 
+			String animalType, 
+			String gender, 
+			String age, 
+			String weight, 
+			String acquisitionDate, 
+			String acquisitionCountry, 
+			String trainingStatus, 
+			boolean reserved, 
+			String inServiceCountry) {
+		this.name = name;
+		this.animalType = animalType;
+		this.gender = gender;
+		this.age = age;
+		this.weight = weight;
+		this.acquisitionDate = acquisitionDate;
+		this.acquisitionCountry = acquisitionCountry;
+		this.trainingStatus = trainingStatus;
+		this.reserved = reserved;
+		this.inServiceCountry = inServiceCountry;
+	}
 
 	public String getName() {
 		return name;
