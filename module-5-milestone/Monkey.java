@@ -2,10 +2,6 @@ import java.util.Set;
 
 public class Monkey extends RescueAnimal{
 
-    private double tailLength;
-    private double height;
-    private double bodyLength;
-    private String species;
     private static final String animalType = "MONKEY";
     private static final Set<String> elligbleSpecies = Set.of(
         "capuchin",
@@ -15,6 +11,10 @@ public class Monkey extends RescueAnimal{
         "squirrel monkey",
         "tamarin"
     );
+    private double tailLength;
+    private double height;
+    private double bodyLength;
+    private String species;
 
     public Monkey() {};
 

@@ -89,15 +89,11 @@ public class Driver {
         String acquisitionDate = scanner.nextLine();
         System.out.println("What is the dog's acquisition country?");
         String acquisitionCountry = scanner.nextLine();
-        System.out.println("What is the dog's training status?");
-        String trainingStatus = scanner.nextLine();
-        System.out.println("Is the dog reserved (true/false)?");
-        boolean reserved = scanner.nextBoolean();
         System.out.println("What is the dog's in-service country?");
         String inServiceCountry = scanner.nextLine();
         dogList.add(new Dog(
                 name, gender, age, weight, acquisitionDate, acquisitionCountry, 
-                trainingStatus, reserved, inServiceCountry, breed
+                "intake", false, inServiceCountry, breed
             )
         );
     }
@@ -132,15 +128,11 @@ public class Driver {
         String acquisitionDate = scanner.nextLine();
         System.out.println("What is the monkey's acquisition country?");
         String acquisitionCountry = scanner.nextLine();
-        System.out.println("What is the monkey's training status?");
-        String trainingStatus = scanner.nextLine();
-        System.out.println("Is the monkey reserved (true/false)?");
-        boolean reserved = scanner.nextBoolean();
         System.out.println("What is the monkey's in-service country?");
         String inServiceCountry = scanner.nextLine();
         monkeyList.add(new Monkey(
                 name, gender, age, weight, acquisitionDate, acquisitionCountry, 
-                trainingStatus, reserved, inServiceCountry, tailLength,
+                "intake", false, inServiceCountry, tailLength,
                 height, bodyLength, species
             )
         );

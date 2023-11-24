@@ -1,8 +1,8 @@
 
 public class Dog extends RescueAnimal {
 
-    private String breed;
     private static final String animalType = "DOG";
+    private String breed;
 
     public Dog(
             String name, 
