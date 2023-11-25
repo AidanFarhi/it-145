@@ -64,7 +64,24 @@ public class Driver {
      * Initializes several Monkey objects and puts them in a List.
      */
     public static void initializeMonkeyList() {
-        System.out.println("initializing MonkeyList");
+        Monkey monkey1 = new Monkey(
+            "George", "male", "3", "23.5", "01-01-2017", 
+            "Peru", "in service", false, 
+            "United States", 32.4, 23.0, 54.2, "capuchin"
+        );
+        Monkey monkey2 = new Monkey(
+            "Bingo", "female", "2", "25.5", "03-21-2020", 
+            "Gabon", "in service", true, 
+            "United States", 35.4, 53.0, 74.2, "tamarin"
+        );
+        Monkey monkey3 = new Monkey(
+            "Chunky", "male", "8", "234.5", "11-24-2021", 
+            "Peru", "in service", false, 
+            "Canada", 13.4, 15.0, 21.2, "guenon"
+        );
+        monkeyList.add(monkey1);
+        monkeyList.add(monkey2);
+        monkeyList.add(monkey3);
     }
 
     /**
@@ -85,7 +102,7 @@ public class Driver {
         String age = scanner.nextLine();
         System.out.println("What is the dog's weight?");
         String weight = scanner.nextLine();
-        System.out.println("What is the dog's acquisition date (YYYY-MM-DD)?");
+        System.out.println("What is the dog's acquisition date (MM-DD-YYYY)?");
         String acquisitionDate = scanner.nextLine();
         System.out.println("What is the dog's acquisition country?");
         String acquisitionCountry = scanner.nextLine();
@@ -108,9 +125,11 @@ public class Driver {
     public static void intakeNewMonkey(Scanner scanner) {
         System.out.println("What is the monkey's name?");
         String name = scanner.nextLine();
+        // Check if the monkey is already present.
         if (monkeyIsInSystem(name)) return;
         System.out.println("What is the monkey's species?");
         String species = scanner.nextLine();
+        // Check if the species is elligble.
         if (!Monkey.isAnElligbleSpecies(species)) return;
         System.out.println("What is the monkey's gender (male/female)?");
         String gender = scanner.nextLine();
@@ -124,7 +143,7 @@ public class Driver {
         double tailLength = scanner.nextDouble();
         System.out.println("What is the monkey's body length?");
         double bodyLength = scanner.nextDouble();
-        System.out.println("What is the monkey's acquisition date (YYYY-MM-DD)?");
+        System.out.println("What is the monkey's acquisition date (MM-DD-YYYY)?");
         String acquisitionDate = scanner.nextLine();
         System.out.println("What is the monkey's acquisition country?");
         String acquisitionCountry = scanner.nextLine();
@@ -156,8 +175,50 @@ public class Driver {
     // Remember that you only have to fully implement ONE of these lists. 
     // The other lists can have a print statement saying "This option needs to be implemented".
     // To score "exemplary" you must correctly implement the "available" list.
-    public static void printAnimals() {
-        System.out.println("The method printAnimals needs to be implemented");
+    public static void printAnimals(String listType) {
+        switch (listType.toLowerCase()) {
+            case "dog":
+                System.out.println("printing all dogs...");
+                break;
+            case "monkey":
+                System.out.println("printing all monkeys...");
+                break;
+            case "available":
+                printAvailableAnimals();
+                break;
+            default:
+                System.out.println("invalid input. options: [dog|monkey|available]");
+                break;
+        }
+    }
+
+    /**
+     * Prints all available animals. The criteria for availability is:
+     * <p>
+     * - fully trained ("in service")
+     * <p>
+     * - not reserved
+     */
+    private static void printAvailableAnimals() {
+        System.out.println("- available animals -");
+        // print all available dogs
+        for (Dog dog : dogList) {
+            if (dog.getTrainingStatus().equalsIgnoreCase("in service") && !dog.getReserved()) {
+                System.out.println(
+                    dog.getName() + " | " + dog.getTrainingStatus() + " | " +
+                    dog.getAcquisitionLocation() + " | " + dog.getReserved()
+                );
+            }
+        }
+        // print all available monkeys
+        for (Monkey monkey : monkeyList) {
+            if (monkey.getTrainingStatus().equalsIgnoreCase("in service") && !monkey.getReserved()) {
+                System.out.println(
+                    monkey.getName() + " | " + monkey.getTrainingStatus() + " | " +
+                    monkey.getAcquisitionLocation() + " | " + monkey.getReserved()
+                );
+            }
+        }
     }
 
     /**
@@ -229,15 +290,16 @@ public class Driver {
                 reserveAnimal(scanner);
                 break;
             case '4':
-                printAnimals();
+                printAnimals("dogs");
                 break;
             case '5':
-                printAnimals();
+                printAnimals("monkeys");
                 break;
             case '6':
-                printAnimals();
+                printAnimals("available");
                 break;
             default:
+                System.out.println("invalid input.");
                 break;
         }
     }

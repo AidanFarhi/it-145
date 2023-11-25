@@ -11,8 +11,9 @@ on a Grazioso Salvare farm.
 - The Animals -
 Currently when Grazioso Salvare acquires a dog, they record the name, breed, gender, age, and
 weight. Grazioso Salvare also records the date and the location where they acquired the dog.
-Additionally, they track the training status of the dog, as described above. When a dog is “inservice”, 
-they record the country where the dog is in service and whether or not the dog is “reserved”.
+Additionally, they track the training status of the dog, as described above. When a dog is 
+“in-service”, they record the country where the dog is in service and whether or not the 
+dog is “reserved”.
 
 * Special Note on Monkeys
 As Grazioso Salvare explores the use of monkeys as search and rescue animals, they want their
