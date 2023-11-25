@@ -177,11 +177,11 @@ public class Driver {
     // To score "exemplary" you must correctly implement the "available" list.
     public static void printAnimals(String listType) {
         switch (listType.toLowerCase()) {
-            case "dog":
-                System.out.println("printing all dogs...");
+            case "dogs":
+                printAllDogs();
                 break;
-            case "monkey":
-                System.out.println("printing all monkeys...");
+            case "monkeys":
+                printAllMonkeys();
                 break;
             case "available":
                 printAvailableAnimals();
@@ -222,6 +222,32 @@ public class Driver {
     }
 
     /**
+     * Prints all dogs in the system.
+     */
+    private static void printAllDogs() {
+        System.out.println("- all dogs -");
+        for (Dog dog : dogList) {
+            System.out.println(
+                dog.getName() + " | " + dog.getTrainingStatus() + " | " +
+                dog.getAcquisitionLocation() + " | " + dog.getReserved()
+            );
+        }
+    }
+
+    /**
+     * Prints all monkeys in the system.
+     */
+    private static void printAllMonkeys() {
+        System.out.println("- all monkeys -");
+        for (Monkey monkey : monkeyList) {
+            System.out.println(
+                monkey.getName() + " | " + monkey.getTrainingStatus() + " | " +
+                monkey.getAcquisitionLocation() + " | " + monkey.getReserved()
+            );
+        }
+    }
+
+    /**
      * Determines whether a given menu choice is valid.
      * 
      * @param menuChoice the menu choice.
@@ -232,9 +258,7 @@ public class Driver {
         if (Character.isDigit(menuChoice)) {
             int menuChoiceInt = Integer.parseInt(Character.toString(menuChoice));
             // menuChoice needs to be within the following interval: [1, 6].
-            if (!(1 <= menuChoiceInt && menuChoiceInt <= 6)) {
-                return false;
-            }
+            if (!(1 <= menuChoiceInt && menuChoiceInt <= 6)) return false;
         } else if (menuChoice != 'q') { // Check if 'q' was entered
             return false;
         }
@@ -297,6 +321,9 @@ public class Driver {
                 break;
             case '6':
                 printAnimals("available");
+                break;
+            case 'q':
+                System.out.println("Goodbye!");
                 break;
             default:
                 System.out.println("invalid input.");
