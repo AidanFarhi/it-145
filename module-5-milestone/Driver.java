@@ -160,15 +160,40 @@ public class Driver {
     // Complete reserveAnimal
     // You will need to find the animal by animal type and in service country
     public static void reserveAnimal(Scanner scanner) {
-        System.out.println("Enter the animal's name:");
-        String animalName = scanner.nextLine();
-        // Determine whether animal is in the system.
-        if (dogIsInSystem(animalName) || monkeyIsInSystem(animalName)) {
-            // Figure out whether animal is a Dog or Monkey
-            System.out.println(animalName + " is in the system.");
+        // Get animal type and in service country from input.
+        System.out.println("Enter the animal type (dog/monkey):");
+        String animalType = scanner.nextLine();
+        System.out.println("Enter the animal in service country:");
+        String inServiceCountry = scanner.nextLine();
+        // Determine whether an available animal matches the criteria.
+        RescueAnimal reservedRescueAnimal = null;
+        if (animalType.equalsIgnoreCase("DOG")) {
+            // Find an in service and unreserved dog that has a matching in service country.
+            for (Dog dog : dogList) {
+                if (dog.getInServiceLocation().equalsIgnoreCase(inServiceCountry) && !dog.getReserved() &&
+                    dog.getTrainingStatus().equalsIgnoreCase("in service")) {
+                    dog.setReserved(true);
+                    reservedRescueAnimal = dog;
+                }
+            }
+        } else if (animalType.equalsIgnoreCase("MONKEY")) {
+            // Find an in service and unreserved monkey that has a matching in service country.
+            for (Monkey monkey : monkeyList) {
+                if (monkey.getInServiceLocation().equalsIgnoreCase(inServiceCountry) && !monkey.getReserved() &&
+                    monkey.getTrainingStatus().equalsIgnoreCase("in service")) {
+                    monkey.setReserved(true);
+                    reservedRescueAnimal = monkey;
+                }
+            }
         } else {
-            // print a message letting them know the dog is not in the system
-            System.out.println(animalName + " is not in the system.");
+            System.out.println("Invalid animal type. Available types: dog|monkey");
+            return;
+        }
+        // Print result
+        if (reservedRescueAnimal != null) {
+            System.out.println("You have reserved: " + reservedRescueAnimal.getName());
+        } else {
+            System.out.println("Sorry, no available animal meets the criteria.");
         }
     }
 
@@ -205,51 +230,74 @@ public class Driver {
      * - not reserved
      */
     private static void printAvailableAnimals() {
-        System.out.println("- available animals -");
+        String formatString = "| %-18s | %-18s | %-18s | %-18s | %-18s |\n";
+        String separatorString = "+%-20s+%-20s+%-20s+%-20s+%-20s+\n";
+        String line = "--------------------";
+        System.out.println("Available animals:");
+        System.out.printf(separatorString, line, line, line, line, line);
+        System.out.printf(formatString, "Type", "Name", "Training Status", "In-service Country", "Reserved");
+        System.out.printf(separatorString, line, line, line, line, line);
         // print all available dogs
         for (Dog dog : dogList) {
             if (dog.getTrainingStatus().equalsIgnoreCase("in service") && !dog.getReserved()) {
-                System.out.println(
-                    dog.getName() + " | " + dog.getTrainingStatus() + " | " +
-                    dog.getAcquisitionLocation() + " | " + dog.getReserved()
+                System.out.printf(
+                    formatString, dog.getAnimalType(), dog.getName(), dog.getTrainingStatus(), 
+                    dog.getInServiceLocation(), dog.getReserved()
                 );
             }
         }
         // print all available monkeys
         for (Monkey monkey : monkeyList) {
             if (monkey.getTrainingStatus().equalsIgnoreCase("in service") && !monkey.getReserved()) {
-                System.out.println(
-                    monkey.getName() + " | " + monkey.getTrainingStatus() + " | " +
-                    monkey.getAcquisitionLocation() + " | " + monkey.getReserved()
+                System.out.printf(
+                    formatString, monkey.getAnimalType(), monkey.getName(), monkey.getTrainingStatus(), 
+                    monkey.getInServiceLocation(), monkey.getReserved()
                 );
             }
         }
+        System.out.printf(separatorString, line, line, line, line, line);
     }
 
     /**
      * Prints all dogs in the system.
      */
     private static void printAllDogs() {
+        String formatString = "| %-18s | %-18s | %-18s | %-18s | %-18s |\n";
+        String separatorString = "+%-20s+%-20s+%-20s+%-20s+%-20s+\n";
+        String line = "--------------------";
         System.out.println("Dogs:");
+        System.out.printf(separatorString, line, line, line, line, line);
+        System.out.printf(formatString, "Type", "Name", "Training Status", "In-service Country", "Reserved");
+        System.out.printf(separatorString, line, line, line, line, line);
+        // print all available dogs
         for (Dog dog : dogList) {
-            System.out.println(
-                dog.getName() + " | " + dog.getTrainingStatus() + " | " +
-                dog.getAcquisitionLocation() + " | " + dog.getReserved()
+            System.out.printf(
+                formatString, dog.getAnimalType(), dog.getName(), dog.getTrainingStatus(), 
+                dog.getInServiceLocation(), dog.getReserved()
             );
         }
+        System.out.printf(separatorString, line, line, line, line, line);
     }
 
     /**
      * Prints all monkeys in the system.
      */
     private static void printAllMonkeys() {
+        String formatString = "| %-18s | %-18s | %-18s | %-18s | %-18s |\n";
+        String separatorString = "+%-20s+%-20s+%-20s+%-20s+%-20s+\n";
+        String line = "--------------------";
         System.out.println("Monkeys:");
+        System.out.printf(separatorString, line, line, line, line, line);
+        System.out.printf(formatString, "Type", "Name", "Training Status", "In-service Country", "Reserved");
+        System.out.printf(separatorString, line, line, line, line, line);
+        // print all available dogs
         for (Monkey monkey : monkeyList) {
-            System.out.println(
-                monkey.getName() + " | " + monkey.getTrainingStatus() + " | " +
-                monkey.getAcquisitionLocation() + " | " + monkey.getReserved()
+            System.out.printf(
+                formatString, monkey.getAnimalType(), monkey.getName(), monkey.getTrainingStatus(), 
+                monkey.getInServiceLocation(), monkey.getReserved()
             );
         }
+        System.out.printf(separatorString, line, line, line, line, line);
     }
 
     /**
