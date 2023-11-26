@@ -1,6 +1,21 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The {@code Driver} class serves as the main entry point for the Rescue Animal System application.
+ * It provides functionality for interacting with a list of dogs and monkeys, allowing users to
+ * perform actions such as adding new animals, reserving animals, and printing lists of animals.
+ *
+ * <p>This class uses instances of the {@link Dog} and {@link Monkey} classes to represent dogs
+ * and monkeys in the system, respectively. It also utilizes a {@link Scanner} object for user input
+ * and maintains lists of dogs and monkeys as {@code ArrayList} objects.
+ *
+ * @author Aidan Farhi
+ * @version 1.0
+ * @see Dog
+ * @see Monkey
+ * @see Scanner
+ */
 public class Driver {
 
     private static final ArrayList<Dog> dogList = new ArrayList<>();
@@ -8,6 +23,13 @@ public class Driver {
     private static final Scanner scanner = new Scanner(System.in);
     private static char menuChoice = ' ';
 
+    /**
+     * The main method of the {@code Driver} class, serving as the entry point for the Rescue Animal System application.
+     * It initializes lists of dogs and monkeys, displays the main menu in a loop, and handles user input
+     * to perform various actions until the user chooses to quit the application.
+     * 
+     * @param args the command-line arguments (unused in this application)
+     */
     public static void main(String[] args) {
         initializeDogList();
         initializeMonkeyList();
@@ -136,7 +158,7 @@ public class Driver {
         System.out.println("What is the monkey's species?");
         String species = scanner.nextLine();
         // Check if the species is elligble.
-        if (!Monkey.isAnElligbleSpecies(species)) return;
+        if (!Monkey.isAnEligibleSpecies(species)) return;
         System.out.println("What is the monkey's gender (male/female)?");
         String gender = scanner.nextLine();
         System.out.println("What is the monkey's age?");
