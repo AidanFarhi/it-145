@@ -121,7 +121,10 @@ public class Driver {
     public static void intakeNewDog(Scanner scanner) {
         System.out.println("What is the dog's name?");
         String name = scanner.nextLine();
-        if (dogIsInSystem(name)) return;
+        if (dogIsInSystem(name)) {
+            System.out.println("Sorry, that dog is already in the system.");
+            return;
+        }
         System.out.println("What is the dog's breed?");
         String breed = scanner.nextLine();
         System.out.println("What is the dog's gender (male/female)?");
@@ -154,11 +157,17 @@ public class Driver {
         System.out.println("What is the monkey's name?");
         String name = scanner.nextLine();
         // Check if the monkey is already present.
-        if (monkeyIsInSystem(name)) return;
+        if (monkeyIsInSystem(name)) {
+            System.out.println("Sorry, that monkey is already in the system.");
+            return;
+        }
         System.out.println("What is the monkey's species?");
         String species = scanner.nextLine();
         // Check if the species is elligble.
-        if (!Monkey.isAnEligibleSpecies(species)) return;
+        if (!Monkey.isAnEligibleSpecies(species)) {
+            System.out.println("Sorry, that is not an eligble species.");
+            return;
+        }
         System.out.println("What is the monkey's gender (male/female)?");
         String gender = scanner.nextLine();
         System.out.println("What is the monkey's age?");
