@@ -55,9 +55,15 @@ public class Driver {
             "12-12-2019", "Canada", "in service", 
             true, "Canada", "Chihuahua"
         );
+        Dog dog4 = new Dog(
+            "Sparky", "male", "1", "29.6", 
+            "01-12-2018", "Canada", "in service", 
+            false, "Canada", "Mini Australian Shepard"
+        );
         dogList.add(dog1);
         dogList.add(dog2);
         dogList.add(dog3);
+        dogList.add(dog4);
     }
 
     /**
@@ -106,7 +112,7 @@ public class Driver {
         String acquisitionDate = scanner.nextLine();
         System.out.println("What is the dog's acquisition country?");
         String acquisitionCountry = scanner.nextLine();
-        System.out.println("What is the dog's in-service country?");
+        System.out.println("What is the dog's in service country?");
         String inServiceCountry = scanner.nextLine();
         dogList.add(new Dog(
                 name, gender, age, weight, acquisitionDate, acquisitionCountry, 
@@ -148,7 +154,7 @@ public class Driver {
         String acquisitionDate = scanner.nextLine();
         System.out.println("What is the monkey's acquisition country?");
         String acquisitionCountry = scanner.nextLine();
-        System.out.println("What is the monkey's in-service country?");
+        System.out.println("What is the monkey's in service country?");
         String inServiceCountry = scanner.nextLine();
         monkeyList.add(new Monkey(
                 name, gender, age, weight, acquisitionDate, acquisitionCountry, 
@@ -168,7 +174,7 @@ public class Driver {
         // Get animal type and in service country from input.
         System.out.println("Enter the animal type (dog/monkey):");
         String animalType = scanner.nextLine();
-        System.out.println("Enter the animal in service country:");
+        System.out.println("Enter the country:");
         String inServiceCountry = scanner.nextLine();
         // Determine whether an available animal matches the criteria.
         RescueAnimal reservedRescueAnimal = null;
@@ -198,7 +204,7 @@ public class Driver {
         if (reservedRescueAnimal != null) {
             System.out.println("You have reserved: " + reservedRescueAnimal.getName());
         } else {
-            System.out.println("Sorry, no available animal meets the criteria.");
+            System.out.printf("Sorry, there are no available %ss in that country.\n", animalType);
         }
     }
 
@@ -240,7 +246,7 @@ public class Driver {
         String line = "--------------------";
         System.out.println("Available animals:");
         System.out.printf(separatorString, line, line, line, line, line);
-        System.out.printf(formatString, "Type", "Name", "Training Status", "In-service Country", "Reserved");
+        System.out.printf(formatString, "Type", "Name", "Training Status", "In Service Country", "Reserved");
         System.out.printf(separatorString, line, line, line, line, line);
         // print all available dogs
         for (Dog dog : dogList) {
@@ -272,7 +278,7 @@ public class Driver {
         String line = "--------------------";
         System.out.println("Dogs:");
         System.out.printf(separatorString, line, line, line, line, line);
-        System.out.printf(formatString, "Type", "Name", "Training Status", "In-service Country", "Reserved");
+        System.out.printf(formatString, "Type", "Name", "Training Status", "In Service Country", "Reserved");
         System.out.printf(separatorString, line, line, line, line, line);
         // print all available dogs
         for (Dog dog : dogList) {
@@ -289,11 +295,11 @@ public class Driver {
      */
     private static void printAllMonkeys() {
         String formatString = "| %-18s | %-18s | %-18s | %-18s | %-18s |\n";
+        System.out.println("Monkeys:");
         String separatorString = "+%-20s+%-20s+%-20s+%-20s+%-20s+\n";
         String line = "--------------------";
-        System.out.println("Monkeys:");
         System.out.printf(separatorString, line, line, line, line, line);
-        System.out.printf(formatString, "Type", "Name", "Training Status", "In-service Country", "Reserved");
+        System.out.printf(formatString, "Type", "Name", "Training Status", "In Service Country", "Reserved");
         System.out.printf(separatorString, line, line, line, line, line);
         // print all available dogs
         for (Monkey monkey : monkeyList) {
