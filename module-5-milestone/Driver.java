@@ -160,21 +160,26 @@ public class Driver {
     // Complete reserveAnimal
     // You will need to find the animal by animal type and in service country
     public static void reserveAnimal(Scanner scanner) {
-        System.out.println("The method reserveAnimal needs to be implemented");
+        System.out.println("Enter the animal's name:");
+        String animalName = scanner.nextLine();
+        // Determine whether animal is in the system.
+        if (dogIsInSystem(animalName) || monkeyIsInSystem(animalName)) {
+            // Figure out whether animal is a Dog or Monkey
+            System.out.println(animalName + " is in the system.");
+        } else {
+            // print a message letting them know the dog is not in the system
+            System.out.println(animalName + " is not in the system.");
+        }
     }
 
-    // Complete printAnimals
-    // Include the animal name, status, acquisition country and if the animal is reserved.
-    // Remember that this method connects to three different menu items.
-    // The printAnimals() method has three different outputs
-    // based on the listType parameter
-    // dog - prints the list of dogs
-    // monkey - prints the list of monkeys
-    // available - prints a combined list of all animals that are
-    // fully trained ("in service") but not reserved 
-    // Remember that you only have to fully implement ONE of these lists. 
-    // The other lists can have a print statement saying "This option needs to be implemented".
-    // To score "exemplary" you must correctly implement the "available" list.
+    /**
+     * Prints out detailed rescue animal information.
+     * 
+     * @param listType the type of rescue animal information to print out. 
+     *                 <p>"dogs" (prints all dogs in the system)
+     *                 <p>"monkeys" (prints all monkeys in the system)
+     *                 <p>"available" (prints all available rescue animals in the system)
+     */
     public static void printAnimals(String listType) {
         switch (listType.toLowerCase()) {
             case "dogs":
@@ -225,7 +230,7 @@ public class Driver {
      * Prints all dogs in the system.
      */
     private static void printAllDogs() {
-        System.out.println("- all dogs -");
+        System.out.println("Dogs:");
         for (Dog dog : dogList) {
             System.out.println(
                 dog.getName() + " | " + dog.getTrainingStatus() + " | " +
@@ -238,7 +243,7 @@ public class Driver {
      * Prints all monkeys in the system.
      */
     private static void printAllMonkeys() {
-        System.out.println("- all monkeys -");
+        System.out.println("Monkeys:");
         for (Monkey monkey : monkeyList) {
             System.out.println(
                 monkey.getName() + " | " + monkey.getTrainingStatus() + " | " +
