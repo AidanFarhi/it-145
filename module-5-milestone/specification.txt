@@ -58,6 +58,7 @@ Work on this application has already been started. You must complete the followi
     ■ If animal matches input criteria: Accesses animal object from ArrayList
       and updates the ‘reserved’ attribute of the animal
     ■ If no animal matches input criteria: Prints feedback to the user
+    ■ You will need to find the animal by animal type and in service country
 
 ○ Implement a method to print (display) information about the animals that:
     ■ Prints a list of all dogs OR all monkeys OR all animals that are “in service”

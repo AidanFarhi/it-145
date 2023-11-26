@@ -143,6 +143,7 @@ public class Driver {
         double tailLength = scanner.nextDouble();
         System.out.println("What is the monkey's body length?");
         double bodyLength = scanner.nextDouble();
+        scanner.nextLine();
         System.out.println("What is the monkey's acquisition date (MM-DD-YYYY)?");
         String acquisitionDate = scanner.nextLine();
         System.out.println("What is the monkey's acquisition country?");
@@ -157,8 +158,12 @@ public class Driver {
         );
     }
 
-    // Complete reserveAnimal
-    // You will need to find the animal by animal type and in service country
+    /**
+     * Prompts user for information regarding the animal they want to reserve and then
+     * reserves it if there is a match.
+     * 
+     * @param scanner used for obtaining input from the user.
+     */
     public static void reserveAnimal(Scanner scanner) {
         // Get animal type and in service country from input.
         System.out.println("Enter the animal type (dog/monkey):");
