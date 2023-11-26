@@ -24,9 +24,9 @@ public class Monkey extends RescueAnimal {
         "squirrel monkey",
         "tamarin"
     );
-    private double tailLength;
-    private double height;
-    private double bodyLength;
+    private String tailLength;
+    private String height;
+    private String bodyLength;
     private String species;
 
     /**
@@ -63,9 +63,9 @@ public class Monkey extends RescueAnimal {
             String trainingStatus,
             boolean reserved,
             String inServiceCountry,
-            double tailLength,
-            double height,
-            double bodyLength,
+            String tailLength,
+            String height,
+            String bodyLength,
             String species) {
         super(
             name, animalType, gender, age, weight, acquisitionDate,
@@ -82,7 +82,7 @@ public class Monkey extends RescueAnimal {
      *
      * @return the tail length of the monkey
      */
-    public double getTailLength() {
+    public String getTailLength() {
         return tailLength;
     }
 
@@ -91,7 +91,7 @@ public class Monkey extends RescueAnimal {
      *
      * @param tailLength the new tail length of the monkey
      */
-    public void setTailLength(double tailLength) {
+    public void setTailLength(String tailLength) {
         this.tailLength = tailLength;
     }
 
@@ -100,7 +100,7 @@ public class Monkey extends RescueAnimal {
      *
      * @return the height of the monkey
      */
-    public double getHeight() {
+    public String getHeight() {
         return height;
     }
 
@@ -109,7 +109,7 @@ public class Monkey extends RescueAnimal {
      *
      * @param height the new height of the monkey
      */
-    public void setHeight(double height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
@@ -118,7 +118,7 @@ public class Monkey extends RescueAnimal {
      *
      * @return the body length of the monkey
      */
-    public double getBodyLength() {
+    public String getBodyLength() {
         return bodyLength;
     }
 
@@ -127,7 +127,7 @@ public class Monkey extends RescueAnimal {
      *
      * @param bodyLength the new body length of the monkey
      */
-    public void setBodyLength(double bodyLength) {
+    public void setBodyLength(String bodyLength) {
         this.bodyLength = bodyLength;
     }
 

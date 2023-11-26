@@ -17,7 +17,7 @@ import java.util.Scanner;
  * @see Scanner
  */
 public class Driver {
-
+    
     private static final ArrayList<Dog> dogList = new ArrayList<>();
     private static final ArrayList<Monkey> monkeyList = new ArrayList<>();
     private static final Scanner scanner = new Scanner(System.in);
@@ -95,17 +95,17 @@ public class Driver {
         Monkey monkey1 = new Monkey(
             "George", "male", "3", "23.5", "01-01-2017", 
             "Peru", "in service", false, 
-            "United States", 32.4, 23.0, 54.2, "capuchin"
+            "United States", "32.4", "23.0", "54.2", "capuchin"
         );
         Monkey monkey2 = new Monkey(
             "Bingo", "female", "2", "25.5", "03-21-2020", 
             "Gabon", "in service", true, 
-            "United States", 35.4, 53.0, 74.2, "tamarin"
+            "United States", "35.4", "53.0", "74.2", "tamarin"
         );
         Monkey monkey3 = new Monkey(
             "Chunky", "male", "8", "234.5", "11-24-2021", 
             "Peru", "in service", false, 
-            "Canada", 13.4, 15.0, 21.2, "guenon"
+            "Canada", "13.4", "15.0", "21.2", "guenon"
         );
         monkeyList.add(monkey1);
         monkeyList.add(monkey2);
@@ -175,12 +175,11 @@ public class Driver {
         System.out.println("What is the monkey's weight?");
         String weight = scanner.nextLine();
         System.out.println("What is the monkey's height?");
-        double height = scanner.nextDouble();
+        String height = scanner.nextLine();
         System.out.println("What is the monkey's tail length?");
-        double tailLength = scanner.nextDouble();
+        String tailLength = scanner.nextLine();
         System.out.println("What is the monkey's body length?");
-        double bodyLength = scanner.nextDouble();
-        scanner.nextLine();
+        String bodyLength = scanner.nextLine();
         System.out.println("What is the monkey's acquisition date (MM-DD-YYYY)?");
         String acquisitionDate = scanner.nextLine();
         System.out.println("What is the monkey's acquisition country?");
