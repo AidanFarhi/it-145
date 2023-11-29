@@ -1,0 +1,26 @@
+First, you will debug the Paint1 class so that no errors remain and all 
+calculations work correctly by completing the following:
+    - Find and fix the three errors in the given code.
+    - Use the following sample input values to test your program:
+        Input:
+            30
+            25
+        Output: 
+            Wall area: 750.0 square feet
+            Paint needed: 2.142857142857143 gallons
+
+    If you have found and fixed all the errors, your output should exactly match the sample.
+
+Next, you will add loops to validate all user input and handle exceptions so that code 
+passes all test cases by completing the following:
+    - Review the code, looking for the two code blocks where user input is required.
+    - Implement a do-while loop in both blocks of code to ensure that input is valid 
+      and any exceptions are handled.
+    - Use the two following sample sets of input to test your program. Since these 
+      inputs are invalid, your program should respond to each by prompting the user 
+      to enter valid input. This should continue to loop until valid input is received.
+
+The first sample invalid inputs are the spelled-out number thirty and the numeral 25. 
+The second sample invalid inputs are the numerals 30 and 0.
+
+Think: Why is 0 invalid input for this problem? What is the user being asked to input?
