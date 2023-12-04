@@ -43,7 +43,7 @@ public class Paint2 {
         // Calculate and output the number of paint cans needed 
         // to paint the wall, rounded up to nearest integer.
         cansNeeded = Math.ceil(gallonsPaintNeeded / gallonsPerCan);
-        System.out.printf("Cans needed: %.2f\n", cansNeeded);
+        System.out.printf("Cans needed: %.2f can(s)\n", cansNeeded);
 
         // Close the Scanner object.
         scnr.close();

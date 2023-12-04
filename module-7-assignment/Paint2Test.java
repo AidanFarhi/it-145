@@ -21,11 +21,10 @@ public class Paint2Test {
                     try {
                         System.out.println("Test: " + path.toString());
                         Process process = new ProcessBuilder("java", "Paint2.java").start();
-                        try (OutputStream outputStream = process.getOutputStream();
-                                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream))) {
-                            Files.copy(path, outputStream);
-                            writer.flush();
-                        }
+                        OutputStream outputStream = process.getOutputStream();
+                        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+                        Files.copy(path, outputStream);
+                        bufferedWriter.flush();
                         InputStream inputStream = process.getInputStream();
                         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -33,8 +32,8 @@ public class Paint2Test {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    System.out.println("----------------------------");
                 }
-                System.out.println("----------------------------");
             });
         } catch (IOException e) {
             e.printStackTrace();
