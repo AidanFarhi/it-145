@@ -9,7 +9,7 @@ public class Paint2 {
 
     public static void main(String[] args) {
 
-        // Initialize a Scanner object to obtain input an variables
+        // Initialize a Scanner object to obtain input and variables
         // to store the dimensions of the wall.
         Scanner scnr = new Scanner(System.in);
         double wallHeight = 0.0;
@@ -18,9 +18,8 @@ public class Paint2 {
         double gallonsPaintNeeded = 0.0;
         double cansNeeded;
 
-        // Constants representing the surface area a gallon of
-        // paint can cover and the amount of gallons a can of
-        // pain can hold.
+        // Constants representing the surface area a gallon of paint can 
+        // cover and the amount of gallons a can of pain can hold.
         final double squareFeetPerGallons = 350.0;
         final double gallonsPerCan = 1.0;
 
