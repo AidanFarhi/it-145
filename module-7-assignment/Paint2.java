@@ -3,7 +3,7 @@ import java.util.Scanner;
 /**
  * A program that calculates the area of a wall, how many gallons
  * of paint are required to paint the wall, and the number of cans
- * needed to paint the wall.
+ * of paint needed to paint the wall.
  */
 public class Paint2 {
 
