@@ -21,10 +21,10 @@ import java.util.Scanner;
  */
 public class Driver {
     
-    private static final ArrayList<Dog> dogList = new ArrayList<>();
-    private static final ArrayList<Monkey> monkeyList = new ArrayList<>();
-    private static final Scanner scanner = new Scanner(System.in);
-    private static char menuChoice = ' ';
+    public static final ArrayList<Dog> dogList = new ArrayList<>();
+    public static final ArrayList<Monkey> monkeyList = new ArrayList<>();
+    public static final Scanner scanner = new Scanner(System.in);
+    public static String menuChoice = "";
 
     /**
      * The main method of the {@code Driver} class, serving as the entry point for the Rescue Animal System application.
@@ -36,11 +36,12 @@ public class Driver {
     public static void main(String[] args) {
         initializeDogList();
         initializeMonkeyList();
-        while (menuChoice != 'q') {
+        while (!menuChoice.equals("q")) {
             displayMenu();
-            menuChoice = scanner.nextLine().charAt(0);
+            menuChoice = scanner.nextLine();
+            // Validate input.
             if(!isValidMenuChoice(menuChoice)) {
-                System.out.printf("Error: %c is not a valid option.\n", menuChoice);
+                System.out.printf("Error: %s is not a valid option.\n", menuChoice);
                 continue;
             }
             handleMenuChoice(menuChoice);
@@ -289,11 +290,15 @@ public class Driver {
         // Get animal type and in service country from input.
         System.out.println("Enter the animal type (dog/monkey):");
         String animalType = scanner.nextLine();
+        if (!animalType.equals("dog") && !animalType.equals("monkey")) {
+            System.out.println("Error: Invalid animal type. Available types: (dog/monkey)");
+            return;
+        }
         System.out.println("Enter the country:");
         String inServiceCountry = scanner.nextLine();
         // Determine whether an available animal matches the criteria.
         RescueAnimal reservedRescueAnimal = null;
-        if (animalType.equalsIgnoreCase("DOG")) {
+        if (animalType.equalsIgnoreCase("dog")) {
             // Find an in service and unreserved dog that has a matching in service country.
             for (Dog dog : dogList) {
                 if (dog.getInServiceLocation().equalsIgnoreCase(inServiceCountry) && !dog.getReserved() &&
@@ -303,7 +308,7 @@ public class Driver {
                     break;
                 }
             }
-        } else if (animalType.equalsIgnoreCase("MONKEY")) {
+        } else { // Animal type is MONKEY
             // Find an in service and unreserved monkey that has a matching in service country.
             for (Monkey monkey : monkeyList) {
                 if (monkey.getInServiceLocation().equalsIgnoreCase(inServiceCountry) && !monkey.getReserved() &&
@@ -313,15 +318,12 @@ public class Driver {
                     break;
                 }
             }
-        } else {
-            System.out.println("Invalid animal type. Available types: dog|monkey");
-            return;
         }
         // Print result.
         if (reservedRescueAnimal != null) {
             System.out.println("You have reserved: " + reservedRescueAnimal.getName());
         } else {
-            System.out.printf("Sorry, there are no available %ss in that country.\n", animalType);
+            System.out.printf("Sorry, there are no available %ss in %s.\n", animalType, inServiceCountry);
         }
     }
 
@@ -434,13 +436,14 @@ public class Driver {
      * @param menuChoice the menu choice.
      * @return whether or not the menu choice was valid.
      */
-    public static boolean isValidMenuChoice(char menuChoice) {
-        // Check if menuChoice is a digit.
-        if (Character.isDigit(menuChoice)) {
-            int menuChoiceInt = Integer.parseInt(Character.toString(menuChoice));
+    public static boolean isValidMenuChoice(String menuChoice) {
+        if (menuChoice.length() != 1) { // Check if menuChoice is a single char.
+            return false;
+        } else if (Character.isDigit(menuChoice.charAt(0))) { // Check if menuChoice is a digit.
+            int menuChoiceInt = Integer.parseInt(menuChoice);
             // menuChoice needs to be within the following interval: [1, 6].
             if (!(1 <= menuChoiceInt && menuChoiceInt <= 6)) return false;
-        } else if (menuChoice != 'q') { // Check if 'q' was entered
+        } else if (!menuChoice.equals("q")) { // Check if 'q' was entered
             return false;
         }
         return true;
@@ -477,27 +480,27 @@ public class Driver {
      * 
      * @param menuChoice the menu choice.
      */
-    public static void handleMenuChoice(char menuChoice) {
+    public static void handleMenuChoice(String menuChoice) {
         switch (menuChoice) {
-            case '1':
+            case "1":
                 intakeNewDog(scanner);
                 break;
-            case '2':
+            case "2":
                 intakeNewMonkey(scanner);
                 break;
-            case '3':
+            case "3":
                 reserveAnimal(scanner);
                 break;
-            case '4':
+            case "4":
                 printAnimals("dogs");
                 break;
-            case '5':
+            case "5":
                 printAnimals("monkeys");
                 break;
-            case '6':
+            case "6":
                 printAnimals("available");
                 break;
-            case 'q':
+            case "q":
                 System.out.println("Goodbye!");
                 break;
             default:
