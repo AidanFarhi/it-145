@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,7 +39,7 @@ public class Driver {
         while (menuChoice != 'q') {
             displayMenu();
             menuChoice = scanner.nextLine().charAt(0);
-            if(!menuChoiceIsValid(menuChoice)) {
+            if(!isValidMenuChoice(menuChoice)) {
                 System.out.printf("Error: %c is not a valid option.\n", menuChoice);
                 continue;
             }
@@ -122,9 +125,9 @@ public class Driver {
      * @param scanner used for obtaining input from the user.
      */
     public static void intakeNewDog(Scanner scanner) {
-        // TODO: add more robust input validation.
         System.out.println("What is the dog's name?");
         String name = scanner.nextLine();
+        // Check if the dog is already present in the system.
         if (dogIsInSystem(name)) {
             System.out.println("Error: That dog is already in the system.");
             return;
@@ -133,16 +136,28 @@ public class Driver {
         String breed = scanner.nextLine();
         System.out.println("What is the dog's gender (male/female)?");
         String gender = scanner.nextLine();
-        if (!gender.contains("male") || !gender.contains("female")) {
+        if (!gender.equals("male") && !gender.equals("female")) {
             System.out.println("Error: Gender must be (male/female).");
             return;
         }
         System.out.println("What is the dog's age?");
         String age = scanner.nextLine();
+        if (!isValidNumberInput(age)) {
+            System.out.println("Error: Age must be a number greater than 0.");
+            return;
+        }
         System.out.println("What is the dog's weight?");
         String weight = scanner.nextLine();
+        if (!isValidNumberInput(weight)) {
+            System.out.println("Error: Weight must be a number greater than 0.");
+            return;
+        }
         System.out.println("What is the dog's acquisition date (MM-DD-YYYY)?");
         String acquisitionDate = scanner.nextLine();
+        if (!isValidDateFormat(acquisitionDate)) {
+            System.out.println("Error: Acquisition date must be in the following format: (MM-DD-YYYY).");
+            return;
+        }
         System.out.println("What is the dog's acquisition country?");
         String acquisitionCountry = scanner.nextLine();
         System.out.println("What is the dog's in service country?");
@@ -162,10 +177,9 @@ public class Driver {
      * @param scanner used for obtaining input from the user.
      */
     public static void intakeNewMonkey(Scanner scanner) {
-        // TODO: add more robust input validation.
         System.out.println("What is the monkey's name?");
         String name = scanner.nextLine();
-        // Check if the monkey is already present.
+        // Check if the monkey is already present in the system.
         if (monkeyIsInSystem(name)) {
             System.out.println("Error: That monkey is already in the system.");
             return;
@@ -181,22 +195,46 @@ public class Driver {
         }
         System.out.println("What is the monkey's gender (male/female)?");
         String gender = scanner.nextLine();
-        if (!gender.contains("male") || !gender.contains("female")) {
+        if (!gender.contains("male") && !gender.contains("female")) {
             System.out.println("Error: Gender must be (male/female).");
             return;
         }
         System.out.println("What is the monkey's age?");
         String age = scanner.nextLine();
+        if (!isValidNumberInput(age)) {
+            System.out.println("Error: Age must be a number greater than 0.");
+            return;
+        }
         System.out.println("What is the monkey's weight?");
         String weight = scanner.nextLine();
+        if (!isValidNumberInput(weight)) {
+            System.out.println("Error: Weight must be a number greater than 0.");
+            return;
+        }
         System.out.println("What is the monkey's height?");
         String height = scanner.nextLine();
+        if (!isValidNumberInput(height)) {
+            System.out.println("Error: Height must be a number greater than 0.");
+            return;
+        }
         System.out.println("What is the monkey's tail length?");
         String tailLength = scanner.nextLine();
+        if (!isValidNumberInput(tailLength)) {
+            System.out.println("Error: Tail length must be a number greater than 0.");
+            return;
+        }
         System.out.println("What is the monkey's body length?");
         String bodyLength = scanner.nextLine();
+        if (!isValidNumberInput(bodyLength)) {
+            System.out.println("Error: Body length must be a number greater than 0.");
+            return;
+        }
         System.out.println("What is the monkey's acquisition date (MM-DD-YYYY)?");
         String acquisitionDate = scanner.nextLine();
+        if (!isValidDateFormat(acquisitionDate)) {
+            System.out.println("Error: Acquisition date must be in the following format: (MM-DD-YYYY).");
+            return;
+        }
         System.out.println("What is the monkey's acquisition country?");
         String acquisitionCountry = scanner.nextLine();
         System.out.println("What is the monkey's in service country?");
@@ -207,6 +245,38 @@ public class Driver {
                 height, bodyLength, species
             )
         );
+    }
+
+    /**
+     * Checks whether an input string is a number greater than zero.
+     * 
+     * @param numberInput the number input to validate.
+     * @return whether or not the number input is valid.
+     */
+    public static boolean isValidNumberInput(String numberInput) {
+        try {
+            double numberInputDouble = Double.parseDouble(numberInput);
+            if (numberInputDouble <= 0) return false;
+        } catch (NumberFormatException e) { 
+            return false; 
+        };
+        return true;
+    }
+
+    /**
+     * Checks whether an input string is a valid date format.
+     * 
+     * @param dateInput the date input to validate.
+     * @return whether or not the date input is valid.
+     */
+    public static boolean isValidDateFormat(String dateInput) {
+        try {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+            LocalDate.parse(dateInput, dateTimeFormatter);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -230,6 +300,7 @@ public class Driver {
                     dog.getTrainingStatus().equalsIgnoreCase("in service")) {
                     dog.setReserved(true);
                     reservedRescueAnimal = dog;
+                    break;
                 }
             }
         } else if (animalType.equalsIgnoreCase("MONKEY")) {
@@ -239,13 +310,14 @@ public class Driver {
                     monkey.getTrainingStatus().equalsIgnoreCase("in service")) {
                     monkey.setReserved(true);
                     reservedRescueAnimal = monkey;
+                    break;
                 }
             }
         } else {
             System.out.println("Invalid animal type. Available types: dog|monkey");
             return;
         }
-        // Print result
+        // Print result.
         if (reservedRescueAnimal != null) {
             System.out.println("You have reserved: " + reservedRescueAnimal.getName());
         } else {
@@ -285,7 +357,7 @@ public class Driver {
      * <p>
      * - not reserved
      */
-    private static void printAvailableAnimals() {
+    public static void printAvailableAnimals() {
         String formatString = "| %-18s | %-18s | %-18s | %-18s | %-18s |\n";
         String separatorString = "+%-20s+%-20s+%-20s+%-20s+%-20s+\n";
         String line = "--------------------";
@@ -317,7 +389,7 @@ public class Driver {
     /**
      * Prints all dogs in the system.
      */
-    private static void printAllDogs() {
+    public static void printAllDogs() {
         String formatString = "| %-18s | %-18s | %-18s | %-18s | %-18s |\n";
         String separatorString = "+%-20s+%-20s+%-20s+%-20s+%-20s+\n";
         String line = "--------------------";
@@ -338,7 +410,7 @@ public class Driver {
     /**
      * Prints all monkeys in the system.
      */
-    private static void printAllMonkeys() {
+    public static void printAllMonkeys() {
         String formatString = "| %-18s | %-18s | %-18s | %-18s | %-18s |\n";
         System.out.println("Monkeys:");
         String separatorString = "+%-20s+%-20s+%-20s+%-20s+%-20s+\n";
@@ -362,7 +434,7 @@ public class Driver {
      * @param menuChoice the menu choice.
      * @return whether or not the menu choice was valid.
      */
-    public static boolean menuChoiceIsValid(char menuChoice) {
+    public static boolean isValidMenuChoice(char menuChoice) {
         // Check if menuChoice is a digit.
         if (Character.isDigit(menuChoice)) {
             int menuChoiceInt = Integer.parseInt(Character.toString(menuChoice));
@@ -382,10 +454,7 @@ public class Driver {
      */
     public static boolean dogIsInSystem(String dogName) {
         for(Dog dog : dogList) {
-            if (dog.getName().equalsIgnoreCase(dogName)) {
-                System.out.println("\n\nThis dog is already in our system\n\n");
-                return true;
-            }
+            if (dog.getName().equalsIgnoreCase(dogName)) return true;
         }
         return false;
     }
@@ -398,10 +467,7 @@ public class Driver {
      */
     public static boolean monkeyIsInSystem(String monkeyName) {
         for(Monkey monkey : monkeyList) {
-            if (monkey.getName().equalsIgnoreCase(monkeyName)) {
-                System.out.println("\n\nThis monkey is already in our system\n\n");
-                return true;
-            }
+            if (monkey.getName().equalsIgnoreCase(monkeyName)) return true;
         }
         return false;
     }
