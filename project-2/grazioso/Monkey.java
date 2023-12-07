@@ -158,4 +158,11 @@ public class Monkey extends RescueAnimal {
     public static boolean isAnEligibleSpecies(String species) {
         return eligibleSpecies.contains(species.toLowerCase());
     }
+
+    /**
+     * Prints all elligble species.
+     */
+    public static void printEllibleSpecies() {
+        eligibleSpecies.stream().forEach(System.out::println);
+    }
 }

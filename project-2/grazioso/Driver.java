@@ -122,16 +122,21 @@ public class Driver {
      * @param scanner used for obtaining input from the user.
      */
     public static void intakeNewDog(Scanner scanner) {
+        // TODO: add more robust input validation.
         System.out.println("What is the dog's name?");
         String name = scanner.nextLine();
         if (dogIsInSystem(name)) {
-            System.out.println("Sorry, that dog is already in the system.");
+            System.out.println("Error: That dog is already in the system.");
             return;
         }
         System.out.println("What is the dog's breed?");
         String breed = scanner.nextLine();
         System.out.println("What is the dog's gender (male/female)?");
         String gender = scanner.nextLine();
+        if (!gender.contains("male") || !gender.contains("female")) {
+            System.out.println("Error: Gender must be (male/female).");
+            return;
+        }
         System.out.println("What is the dog's age?");
         String age = scanner.nextLine();
         System.out.println("What is the dog's weight?");
@@ -157,22 +162,29 @@ public class Driver {
      * @param scanner used for obtaining input from the user.
      */
     public static void intakeNewMonkey(Scanner scanner) {
+        // TODO: add more robust input validation.
         System.out.println("What is the monkey's name?");
         String name = scanner.nextLine();
         // Check if the monkey is already present.
         if (monkeyIsInSystem(name)) {
-            System.out.println("Sorry, that monkey is already in the system.");
+            System.out.println("Error: That monkey is already in the system.");
             return;
         }
         System.out.println("What is the monkey's species?");
         String species = scanner.nextLine();
         // Check if the species is elligble.
         if (!Monkey.isAnEligibleSpecies(species)) {
-            System.out.println("Sorry, that is not an eligble species.");
+            System.out.println("Error: That is not an eligble species.");
+            System.out.println("Elligble species:");
+            Monkey.printEllibleSpecies();
             return;
         }
         System.out.println("What is the monkey's gender (male/female)?");
         String gender = scanner.nextLine();
+        if (!gender.contains("male") || !gender.contains("female")) {
+            System.out.println("Error: Gender must be (male/female).");
+            return;
+        }
         System.out.println("What is the monkey's age?");
         String age = scanner.nextLine();
         System.out.println("What is the monkey's weight?");
