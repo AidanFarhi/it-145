@@ -36,7 +36,10 @@ public class Driver {
         while (menuChoice != 'q') {
             displayMenu();
             menuChoice = scanner.nextLine().charAt(0);
-            if(!menuChoiceIsValid(menuChoice)) continue;
+            if(!menuChoiceIsValid(menuChoice)) {
+                System.out.printf("Error: %c is not a valid option.\n", menuChoice);
+                continue;
+            }
             handleMenuChoice(menuChoice);
         }
     }
