@@ -34,6 +34,7 @@ public class Driver {
      * @param args the command-line arguments (unused in this application)
      */
     public static void main(String[] args) {
+        // Add some dogs and monkeys to each respective ArrayList for testing purposes.
         initializeDogList();
         initializeMonkeyList();
         while (!menuChoice.equals("q")) {

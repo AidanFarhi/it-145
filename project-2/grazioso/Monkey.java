@@ -33,8 +33,7 @@ public class Monkey extends RescueAnimal {
      * Default constructor for the {@code Monkey} class.
      * Creates an empty instance of a monkey with default attribute values.
      */
-    public Monkey() {
-    }
+    public Monkey() {}
 
     /**
      * Constructs a new {@code Monkey} object with the specified attributes.

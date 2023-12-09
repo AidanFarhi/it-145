@@ -32,8 +32,7 @@ public class RescueAnimal {
      * Default constructor for the {@code RescueAnimal} class.
      * Creates an empty instance of a rescue animal with default attribute values.
      */
-    public RescueAnimal() {
-    }
+    public RescueAnimal() {}
 
     /**
      * Constructs a new {@code RescueAnimal} object with the specified attributes.
